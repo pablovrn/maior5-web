@@ -67,7 +67,7 @@ export default async function ApartamentoDetailPage({ params }: PageProps) {
 
             <div className="detail-actions">
               <Link
-                href={`/sobre-nosotros?apartamento=${apartamento.id}#contacto`}
+                href={'call:+34659118006'}
                 className="btn btn--primary"
               >
                 Consultar disponibilidad

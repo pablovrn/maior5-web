@@ -15,10 +15,9 @@ export default function HomePage() {
         </div>
         <div className="wrap hero-content">
           <p className="eyebrow">Calle Maior, 5 · Verín, Galicia</p>
-          <h1>Tu dirección en el corazón de Verín.</h1>
+          <h1>Descanso en el corazón de Verín</h1>
           <p className="lede">
-            Cuatro apartamentos reformados en un edificio de la calle principal, a un paseo del Castillo de Monterrei,
-            las viñas de la D.O. y las aguas termales que dan nombre a la comarca.
+            Cuatro apartamentos reformados en un edificio de la calle principal del casco histórico, con todas las comodidades y a un paso de todo lo que Verín ofrece.
           </p>
           <div className="hero-cta">
             <Link href="/apartamentos" className="btn btn--light">Ver los apartamentos</Link>
@@ -42,9 +41,7 @@ export default function HomePage() {
               <h2>Por qué aquí</h2>
             </div>
             <p className="lede">
-              Al sur de Ourense, en la frontera con Portugal, Verín reúne un castillo, un valle de viñedos y un
-              patrimonio de aguas minerales poco frecuente en un radio tan corto — con el edificio en plena Calle
-              Maior, a un paseo de todo ello.
+              Verín, un lugar con encanto, gastronomía e historia, para disfrutar de una Galicia distinta y auténtica. Perfecto para escapadas de fin de semana, vacaciones en familia o relajarse en pareja.
             </p>
           </div>
 
@@ -57,31 +54,34 @@ export default function HomePage() {
               </div>*/}
               <div className="highlight-item">
                 <span className="mono">D.O. Monterrei</span>
-                <h3>Godello y Mencía a los pies de la fortaleza</h3>
-                <p>Los viñedos de la denominación rodean el castillo; media hora te separa de una bodega y una cata.</p>
+                <h3>Godello, el nuevo vino de moda</h3>
+                <p>Podrás observar dónde y cómo se produce este vino único.</p>
               </div>
               <div className="highlight-item">
-                <span className="mono">Aguas de Verín</span>
+                <span className="mono">Ruta de las Aguas</span>
                 <h3>Manantiales que dan nombre a la comarca</h3>
-                <p>Fuentes y balnearios conocidos en toda España están a menos de diez minutos del apartamento.</p>
+                <p>Fuentes y balnearios conocidos en toda España para disfrutar en familia.</p>
               </div>
               <div className="highlight-item">
                 <span className="mono">Calle Maior, 5</span>
                 <h3>A pie de todo, sin salir del casco</h3>
-                <p>Desde la puerta del edificio se llega andando a la plaza, los comercios y las principales paradas de autobús.</p>
+                <p>Ubicado en el corazón de Verín, a solo unos pasos de todos los servicios y atracciones.</p>
                 <Link href="/sobre-nosotros" className="link-arrow" style={{ marginTop: "0.9rem" }}>Cómo llegar →</Link>
               </div>
             </div>
 
             <div className="location-collage">
               <Link href="/sobre-nosotros#contacto">
-                <Image src={verinImages[1]?.src ?? verinImages[0].src} alt={verinImages[1]?.alt ?? ""} width={480} height={600} style={{ objectFit: "cover" }} />
+                <Image src={verinImages[1]?.src ?? verinImages[0].src} alt={verinImages[1]?.alt ?? ""} width={300} height={300} style={{ objectFit: "cover" }} />
               </Link>
               <Link href="/sobre-nosotros#contacto">
                 <Image src={verinImages[2]?.src ?? verinImages[0].src} alt={verinImages[2]?.alt ?? ""} width={300} height={300} style={{ objectFit: "cover" }} />
               </Link>
               <Link href="/sobre-nosotros#contacto">
                 <Image src={verinImages[3]?.src ?? verinImages[0].src} alt={verinImages[3]?.alt ?? ""} width={300} height={300} style={{ objectFit: "cover" }} />
+              </Link>
+              <Link href="/sobre-nosotros#contacto">
+                <Image src={verinImages[4]?.src ?? verinImages[0].src} alt={verinImages[4]?.alt ?? ""} width={300} height={300} style={{ objectFit: "cover" }} />
               </Link>
             </div>
           </div>
@@ -94,7 +94,7 @@ export default function HomePage() {
           <div className="section-head">
             <div>
               <p className="eyebrow">Alojamiento</p>
-              <h2>Cuatro apartamentos, una misma calle</h2>
+              <h2>Cuatro apartamentos nuevos y modernos</h2>
             </div>
             <Link href="/apartamentos" className="link-arrow">Ver todos →</Link>
           </div>

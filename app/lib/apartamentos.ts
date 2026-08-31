@@ -75,7 +75,7 @@ export const apartamentos: Apartamento[] = [
     habitaciones: 2,
     banos: 1,
     descripcion:
-      "Apartamento de 50m² con orientación sur, 2 habitaciones, 1 baño, salón-cocina-comedor integrado. Equipado con vitrocerámica, horno, nevera, lavadora y aire acondicionado. Terraza privada. Actualmente OCUPADO.",
+      "Apartamento de 50m² con orientación sur, 2 habitaciones, 1 baño, salón-cocina-comedor integrado. Equipado con vitrocerámica, horno, nevera, lavadora y aire acondicionado. Terraza privada.",
     imagen: "/images/2a/2a_2.jpg",
     imagenes: [
       "/images/2a/2a_1.jpg",
@@ -103,7 +103,7 @@ export const apartamentos: Apartamento[] = [
     habitaciones: 2,
     banos: 2,
     descripcion:
-      "Apartamento exterior de 69m² con 2 habitaciones, 2 baños, salón-cocina-comedor integrado. Equipado con vitrocerámica, horno, nevera, lavadora, televisión y aire acondicionado. Terraza con vistas a Calle Maior. Actualmente OCUPADO.",
+      "Apartamento exterior de 69m² con 2 habitaciones, 2 baños, salón-cocina-comedor integrado. Equipado con vitrocerámica, horno, nevera, lavadora, televisión y aire acondicionado. Terraza con vistas a Calle Maior.",
     imagen: "/images/2b/2b_1.jpg",
     imagenes: [
       "/images/2b/2b_1.jpg",

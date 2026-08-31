@@ -17,12 +17,12 @@ export default function SobreNosotrosPage() {
         <div className="wrap">
           <p className="eyebrow">Sobre nosotros</p>
           <h1 style={{ fontSize: "clamp(2.2rem, 2vw + 1.6rem, 3.2rem)", margin: "0.6rem 0 1.2rem", maxWidth: "18ch" }}>
-            Una calle que conocemos casa por casa
+            Un edificio en el corazón de Verín.
           </h1>
           <p className="lede" style={{ maxWidth: "56ch" }}>
-            Maior 5 nació de la reforma de un edificio familiar en pleno centro de Verín. Conservamos su fachada de
-            piedra y renovamos por dentro cada uno de los cuatro apartamentos, pensados para estancias cortas y largas
-            a un paso del castillo, las viñas y las aguas de la comarca.
+            Maior 5 nació de la reforma integral de un edificio de los años 50 en pleno centro de Verín. Conservamos su fachada de
+            estilo racionalista y renovamos por dentro cada uno de los cuatro apartamentos, pensados para estancias cortas y largas.
+            Nuestra experiencia en el alquiler nos permite ofrecer un servicio de calidad, con atención personalizada y disponibilidad para cualquier consulta o necesidad que surja durante la estancia.
           </p>
         </div>
       </section>

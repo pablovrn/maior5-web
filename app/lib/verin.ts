@@ -7,8 +7,9 @@ export interface VerinImage {
 }
 
 export const verinImages: VerinImage[] = [
-  { src: "/images/verin/verin-1.png", alt: "Castillo de Monterrei, junto a Verín" },
-  { src: "/images/verin/verin-2.jpg", alt: "Viñedos de la D.O. Monterrei" },
-  { src: "/images/verin/verin-3.jpg", alt: "Casco histórico de Verín" },
-  { src: "/images/verin/verin-4.jpg", alt: "Vistas del valle de Verín" },
+  { src: "/images/verin/verin-1.png", alt: "" },
+  { src: "/images/verin/verin-2.jpg", alt: "Castillo de Monterrei" },
+  { src: "/images/verin/verin-4.jpg", alt: "Plaza Mayor de Verín" },
+  { src: "/images/verin/verin-7.jpg", alt: "Cigarrón, Entroido de Verín" },
+  { src: "/images/verin/verin-3.jpg", alt: "Vista aérea de Verín" },
 ];

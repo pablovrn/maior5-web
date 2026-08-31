@@ -35,7 +35,7 @@ export default function Header() {
             <Image src="/images/logo/logo_blanco.png" alt="" width={52} height={37} />
             <span className="brand-name">
               Maior 5
-              <span>Apartamentos en Verín</span>
+              <span>Apartamentos</span>
             </span>
           </Link>
 

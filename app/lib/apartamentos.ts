@@ -1,4 +1,21 @@
-export const apartamentos = [
+export interface Apartamento {
+  id: string;
+  nombre: string;
+  planta: string;
+  precio: string;
+  capacidad: number;
+  metros: number;
+  habitaciones: number;
+  banos: number;
+  descripcion: string;
+  imagen: string;
+  imagenes: string[];
+  amenities: string[];
+  orientacion: string;
+  disponible: boolean;
+}
+
+export const apartamentos: Apartamento[] = [
   {
     id: "1a",
     nombre: "Apartamento 1A",
@@ -8,7 +25,8 @@ export const apartamentos = [
     metros: 52,
     habitaciones: 2,
     banos: 1,
-    descripcion: "Apartamento de 52m² con orientación sur, 2 habitaciones, 1 baño, salón-cocina-comedor integrado. Equipado con vitrocerámica, horno, nevera, lavadora y aire acondicionado. Terraza privada. Destinado a alquiler vacacional.",
+    descripcion:
+      "Apartamento de 52m² con orientación sur, 2 habitaciones, 1 baño, salón-cocina-comedor integrado. Equipado con vitrocerámica, horno, nevera, lavadora y aire acondicionado. Terraza privada. Destinado a alquiler vacacional.",
     imagen: "/images/1a/1a_1.jpg",
     imagenes: [
       "/images/1a/1a_1.jpg",
@@ -33,7 +51,8 @@ export const apartamentos = [
     metros: 39,
     habitaciones: 1,
     banos: 1,
-    descripcion: "Apartamento exterior de 39m² con 1 habitación, salón-cocina-comedor integrado y 1 baño. Equipado con vitrocerámica, horno, nevera, lavadora, televisión y aire acondicionado. Terraza con vistas a Calle Maior. Destinado a alquiler vacacional.",
+    descripcion:
+      "Apartamento exterior de 39m² con 1 habitación, salón-cocina-comedor integrado y 1 baño. Equipado con vitrocerámica, horno, nevera, lavadora, televisión y aire acondicionado. Terraza con vistas a Calle Maior. Destinado a alquiler vacacional.",
     imagen: "/images/1b/1b_1.jpg",
     imagenes: [
       "/images/1b/1b_1.jpg",
@@ -55,8 +74,9 @@ export const apartamentos = [
     metros: 50,
     habitaciones: 2,
     banos: 1,
-    descripcion: "Apartamento de 50m² con orientación sur, 2 habitaciones, 1 baño, salón-cocina-comedor integrado. Equipado con vitrocerámica, horno, nevera, lavadora y aire acondicionado. Terraza privada. Actualmente OCUPADO.",
-    imagen: "/images/2a/2a_1.jpg",
+    descripcion:
+      "Apartamento de 50m² con orientación sur, 2 habitaciones, 1 baño, salón-cocina-comedor integrado. Equipado con vitrocerámica, horno, nevera, lavadora y aire acondicionado. Terraza privada. Actualmente OCUPADO.",
+    imagen: "/images/2a/2a_2.jpg",
     imagenes: [
       "/images/2a/2a_1.jpg",
       "/images/2a/2a_2.jpg",
@@ -68,7 +88,6 @@ export const apartamentos = [
       "/images/2a/2a_8.jpg",
       "/images/2a/2a_9.jpg",
       "/images/2a/2a_10.jpg",
-      "/images/2a/2a_11.jpg",
     ],
     amenities: ["vitrocerámica", "horno", "nevera", "lavadora", "aire acondicionado", "terraza"],
     orientacion: "sur",
@@ -83,7 +102,8 @@ export const apartamentos = [
     metros: 69,
     habitaciones: 2,
     banos: 2,
-    descripcion: "Apartamento exterior de 69m² con 2 habitaciones, 2 baños, salón-cocina-comedor integrado. Equipado con vitrocerámica, horno, nevera, lavadora, televisión y aire acondicionado. Terraza con vistas a Calle Maior. Actualmente OCUPADO.",
+    descripcion:
+      "Apartamento exterior de 69m² con 2 habitaciones, 2 baños, salón-cocina-comedor integrado. Equipado con vitrocerámica, horno, nevera, lavadora, televisión y aire acondicionado. Terraza con vistas a Calle Maior. Actualmente OCUPADO.",
     imagen: "/images/2b/2b_1.jpg",
     imagenes: [
       "/images/2b/2b_1.jpg",
@@ -101,3 +121,11 @@ export const apartamentos = [
     disponible: false,
   },
 ];
+
+export function getApartamentoById(id: string): Apartamento | undefined {
+  return apartamentos.find((a) => a.id === id);
+}
+
+export function getOtrosApartamentos(id: string): Apartamento[] {
+  return apartamentos.filter((a) => a.id !== id);
+}

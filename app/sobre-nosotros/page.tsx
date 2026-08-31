@@ -1,180 +1,93 @@
-import Header from "@/components/Header";
-import { AboutCallButton, AboutApartmentsButton } from "@/components/AboutButtons";
-import { GoogleMapsButton } from "@/components/GoogleMapsButton";
-import Footer from "@/components/Footer";
+import type { Metadata } from "next";
+import Image from "next/image";
+import { Suspense } from "react";
+import ContornoDivider from "@/components/ContornoDivider";
+import ContactForm from "@/components/ContactForm";
+import { verinImages } from "@/app/lib/verin";
 
-export default function SobreNosotros() {
+export const metadata: Metadata = {
+  title: "Sobre nosotros y contacto",
+  description: "Conoce Maior 5 Apartamentos, cómo llegar a Verín y cómo ponerte en contacto para reservar.",
+};
+
+export default function SobreNosotrosPage() {
   return (
-    <main style={{ fontFamily: "system-ui, sans-serif", color: "#1a1a1a" }}>
-      <Header />
-      
-      {/* Hero Section */}
-      <section
-        style={{
-          padding: "120px 40px 80px",
-          textAlign: "center",
-          background: "linear-gradient(135deg, #e6f3ff 0%, #ffffff 100%)",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        <div style={{ position: "relative", zIndex: 2, maxWidth: "800px", margin: "0 auto" }}>
-          <h1
-            style={{
-              fontSize: "48px",
-              fontWeight: "700",
-              color: "#1a1a1a",
-              marginBottom: "20px",
-            }}
-          >
-            Sobre nosotros
+    <>
+      <section className="section section--stone" style={{ paddingTop: "clamp(7rem, 14vw, 9rem)" }}>
+        <div className="wrap">
+          <p className="eyebrow">Sobre nosotros</p>
+          <h1 style={{ fontSize: "clamp(2.2rem, 2vw + 1.6rem, 3.2rem)", margin: "0.6rem 0 1.2rem", maxWidth: "18ch" }}>
+            Una calle que conocemos casa por casa
           </h1>
-          <p style={{ fontSize: "20px", color: "#666", lineHeight: "1.6" }}>
-            Conoce Maior5, tu hogar en el corazón de Verín
+          <p className="lede" style={{ maxWidth: "56ch" }}>
+            Maior 5 nació de la reforma de un edificio familiar en pleno centro de Verín. Conservamos su fachada de
+            piedra y renovamos por dentro cada uno de los cuatro apartamentos, pensados para estancias cortas y largas
+            a un paso del castillo, las viñas y las aguas de la comarca.
           </p>
         </div>
       </section>
 
-      {/* Main Content */}
-      <section style={{ padding: "80px 40px", background: "white" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          
-          {/* Our Story & Commitment */}
-          <div style={{ marginBottom: "80px" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
+      <ContornoDivider tone="sky" />
+
+      <section className="section section--white">
+        <div className="wrap location-grid">
+          <div>
+            <p className="eyebrow">Cómo llegar</p>
+            <h2>En coche, en tren o andando desde la plaza</h2>
+            <dl className="address-block" style={{ borderTop: "none", paddingTop: 0, flexDirection: "column", gap: "1.2rem" }}>
               <div>
-                <h2 style={{ fontSize: "36px", fontWeight: "700", color: "#1a1a1a", marginBottom: "20px" }}>
-                  Nuestra historia
-                </h2>
-                <p style={{ fontSize: "16px", lineHeight: "1.6", color: "#666", marginBottom: "20px" }}>
-                  Después de varios años en el mundo inmobiliario de Verín, nace Maior5 en 2023. 
-                  Un edificio racionalista de los años 50 en pleno casco viejo, a escasos 20m de la Plaza García Barbón.
-                </p>
-                <p style={{ fontSize: "16px", lineHeight: "1.6", color: "#666", marginBottom: "20px" }}>
-                  <strong>Comprometidos con el turismo sostenible</strong> y la rehabilitación del patrimonio arquitectónico, 
-                  ofrecemos 4 apartamentos perfectamente equipados para estancias vacacionales y de larga duración.
-                </p>
-                <p style={{ fontSize: "16px", lineHeight: "1.6", color: "#666" }}>
-                  <strong>Nos adaptamos a ti.</strong> Tu comodidad y satisfacción son nuestra prioridad.
-                </p>
+                <dt>En coche</dt>
+                <dd>Salida de la A-52 en Verín; el edificio está a cinco minutos del desvío, en el centro del casco urbano.</dd>
               </div>
-              <div style={{ position: "relative", height: "400px" }}>
-                <img
-                  src="/images/verin/verin-5.jpg"
-                  alt="Edificio Maior5 - Fachada histórica"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    borderRadius: "12px",
-                    boxShadow: "0 8px 24px rgba(0, 102, 204, 0.2)",
-                  }}
-                />
+              <div>
+                <dt>En tren o autobús</dt>
+                <dd>Desde la estación de Verín, quince minutos andando por la Calle Maior hasta el número 5.</dd>
               </div>
-            </div>
+              <div>
+                <dt>Desde la plaza mayor</dt>
+                <dd>Dos minutos a pie: el edificio está sobre la misma calle, entre comercios y cafeterías.</dd>
+              </div>
+            </dl>
           </div>
-
-          {/* Our Values */}
-          <div style={{ marginBottom: "80px" }}>
-            <h2 style={{ fontSize: "36px", fontWeight: "700", color: "#1a1a1a", textAlign: "center", marginBottom: "40px" }}>
-              Nuestros valores
-            </h2>
-            
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "40px" }}>
-              
-              <div style={{ textAlign: "center", padding: "30px", background: "#f8fbff", borderRadius: "12px" }}>
-                <div style={{ fontSize: "48px", marginBottom: "20px" }}>🤝</div>
-                <h3 style={{ fontSize: "24px", fontWeight: "600", color: "#1a1a1a", marginBottom: "15px" }}>
-                  Atención personalizada
-                </h3>
-                <p style={{ color: "#666", lineHeight: "1.6" }}>
-                  Estamos aquí para resolver todas tus necesidades y hacer que tu estancia sea perfecta.
-                </p>
-              </div>
-
-              <div style={{ textAlign: "center", padding: "30px", background: "#f8fbff", borderRadius: "12px" }}>
-                <div style={{ fontSize: "48px", marginBottom: "20px" }}>🕊️</div>
-                <h3 style={{ fontSize: "24px", fontWeight: "600", color: "#1a1a1a", marginBottom: "15px" }}>
-                  Libertad total
-                </h3>
-                <p style={{ color: "#666", lineHeight: "1.6" }}>
-                  Sin horarios ni restricciones. Tu tiempo es tuyo para disfrutar de Verín.
-                </p>
-              </div>
-
-              <div style={{ textAlign: "center", padding: "30px", background: "#f8fbff", borderRadius: "12px" }}>
-                <div style={{ fontSize: "48px", marginBottom: "20px" }}>😌</div>
-                <h3 style={{ fontSize: "24px", fontWeight: "600", color: "#1a1a1a", marginBottom: "15px" }}>
-                  Tranquilidad
-                </h3>
-                <p style={{ color: "#666", lineHeight: "1.6" }}>
-                  Un entorno tranquilo en el corazón del casco antiguo, perfecto para descansar.
-                </p>
-              </div>
-
-            </div>
+          <div className="location-collage">
+            <Image src={verinImages[2]?.src ?? verinImages[0].src} alt={verinImages[2]?.alt ?? ""} width={480} height={600} style={{ objectFit: "cover" }} />
+            <Image src={verinImages[0].src} alt={verinImages[0].alt} width={300} height={300} style={{ objectFit: "cover" }} />
+            <Image src={verinImages[3]?.src ?? verinImages[1]?.src ?? verinImages[0].src} alt={verinImages[3]?.alt ?? ""} width={300} height={300} style={{ objectFit: "cover" }} />
           </div>
-
-          {/* Location Map */}
-          <div style={{ marginBottom: "80px" }}>
-            <h2 style={{ fontSize: "36px", fontWeight: "700", color: "#1a1a1a", textAlign: "center", marginBottom: "20px" }}>
-              Nuestra ubicación
-            </h2>
-            <p style={{ fontSize: "18px", color: "#666", textAlign: "center", marginBottom: "40px" }}>
-              📍 Calle Maior, 5 - Verín (Ourense) | En pleno corazón del casco antiguo
-            </p>
-            
-            <div style={{ 
-              width: "100%", 
-              height: "450px", 
-              borderRadius: "16px", 
-              overflow: "hidden",
-              boxShadow: "0 12px 32px rgba(0, 102, 204, 0.15)",
-              border: "2px solid #e6f3ff"
-            }}>
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2967.7496816214357!2d-7.4409249241016315!3d41.94122997123497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd3ac10b045faaef%3A0x6151e4d1ecb817a6!2sMaior%205%20Apartamentos!5e0!3m2!1ses!2ses!4v1776790441021!5m2!1ses!2ses"
-                width="100%"
-                height="100%"
-                style={{ border: 0, filter: "saturate(1.1) contrast(1.05)" }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Ubicación moderna de Maior5 en Verín"
-              ></iframe>
-            </div>
-            
-            <div style={{ textAlign: "center", marginTop: "20px" }}>
-              <GoogleMapsButton />
-            </div>
-          </div>
-
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section
-        style={{
-          padding: "80px 40px",
-          textAlign: "center",
-          background: "linear-gradient(135deg, #4d9de0 0%, #7bb3e8 100%)",
-          color: "white",
-        }}
-      >
-        <h2 style={{ fontSize: "36px", fontWeight: "700", marginBottom: "20px" }}>
-          ¿Listo para visitarnos?
-        </h2>
-        <p style={{ fontSize: "18px", marginBottom: "30px", opacity: 0.9 }}>
-          Estamos aquí para hacer que tu estancia en Verín sea inolvidable
-        </p>
-        
-        <div style={{ display: "flex", gap: "20px", justifyContent: "center", flexWrap: "wrap" }}>
-          <AboutCallButton />
-          <AboutApartmentsButton />
+      <ContornoDivider tone="mint" flip />
+
+      <section id="contacto" className="section section--stone">
+        <div className="wrap contact-grid">
+          <div className="contact-info">
+            <p className="eyebrow">Contacto</p>
+            <h2>Escríbenos o llámanos</h2>
+            <p className="lede">Respondemos en menos de 24 horas con disponibilidad y precio para tus fechas.</p>
+            <dl>
+              <div>
+                <dt>Dirección</dt>
+                <dd>Calle Maior, 5 — 32600 Verín, Ourense</dd>
+              </div>
+              <div>
+                <dt>Teléfono</dt>
+                <dd><a href="tel:+34659118006">+34 659 11 80 06</a></dd>
+              </div>
+              <div>
+                <dt>Email</dt>
+                <dd><a href="mailto:ayuda@maior5apartamentos.es">ayuda@maior5apartamentos.es</a></dd>
+              </div>
+            </dl>
+          </div>
+
+          <div>
+            <Suspense fallback={null}>
+              <ContactForm />
+            </Suspense>
+          </div>
         </div>
       </section>
-
-      <Footer />
-    </main>
+    </>
   );
 }

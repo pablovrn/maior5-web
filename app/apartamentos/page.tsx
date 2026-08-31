@@ -1,65 +1,48 @@
-import { apartamentos } from "@/data/apartamentos";
-import ApartmentCard from "@/components/ApartmentCard";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { CallButton, ViewApartmentsButton } from "@/components/HeroButtons";
+import type { Metadata } from "next";
+import ApartamentoCard from "@/components/ApartamentoCard";
+import { apartamentos } from "@/app/lib/apartamentos";
+
+export const metadata: Metadata = {
+  title: "Apartamentos",
+  description: "Los cuatro apartamentos de Maior 5, en Calle Maior 5, Verín. De 39 a 69 m², de 1 a 2 habitaciones.",
+};
+
+const PLANTAS = ["Primera planta", "Segunda planta"];
 
 export default function ApartamentosPage() {
   return (
-    <main style={{ fontFamily: "system-ui, sans-serif", color: "#1a1a1a" }}>
-      <Header />
-
-      {/* Hero Section */}
-      <section
-        style={{
-          padding: "120px 40px 80px",
-          textAlign: "center",
-          background: "linear-gradient(135deg, #e6f3ff 0%, #ffffff 100%)",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        <div style={{ position: "relative", zIndex: 2, maxWidth: "800px", margin: "0 auto" }}>
-          <h1
-            style={{
-              fontSize: "48px",
-              fontWeight: "700",
-              color: "#1a1a1a",
-              marginBottom: "20px",
-            }}
-          >
-            Nuestros apartamentos
+    <>
+      <section className="section section--stone" style={{ paddingTop: "clamp(7rem, 14vw, 9rem)" }}>
+        <div className="wrap">
+          <p className="eyebrow">Alojamiento</p>
+          <h1 style={{ fontSize: "clamp(2.2rem, 2vw + 1.6rem, 3.2rem)", margin: "0.6rem 0 1rem" }}>
+            Cuatro apartamentos, una misma calle
           </h1>
-          <p style={{ fontSize: "20px", color: "#666", lineHeight: "1.6" }}>
-            Descubre todos nuestros apartamentos disponibles en Verín.
-            <br />
-            Elige el que mejor se adapte a tu estancia.
+          <p className="lede">
+            De 39 a 69 m², de 1 a 2 habitaciones y hasta 6 plazas. Todos con cocina equipada, aire acondicionado y
+            terraza, repartidos en dos plantas del número 5 de la Calle Maior.
           </p>
-
-          <div style={{ marginTop: "40px", display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
-            <CallButton />
-          </div>
         </div>
       </section>
 
-      {/* Apartments Grid */}
-      <section style={{ padding: "80px 40px", background: "#f8fbff" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: "28px",
-            }}
-          >
-            {apartamentos.map((apt) => (
-              <ApartmentCard key={apt.id} apt={apt} />
-            ))}
-          </div>
+      <section className="section section--white">
+        <div className="wrap">
+          {PLANTAS.map((planta) => {
+            const enPlanta = apartamentos.filter((a) => a.planta === planta);
+            if (enPlanta.length === 0) return null;
+            return (
+              <div className="apt-group" key={planta}>
+                <p className="apt-group-label mono">{planta}</p>
+                <div className="apt-grid">
+                  {enPlanta.map((apartamento) => (
+                    <ApartamentoCard key={apartamento.id} apartamento={apartamento} />
+                  ))}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
-
-      <Footer />
-    </main>
+    </>
   );
 }

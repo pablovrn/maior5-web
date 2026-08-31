@@ -1,161 +1,98 @@
-import { apartamentos } from "@/data/apartamentos";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { ImageCarousel } from "@/components/ImageCarousel";
-import { AboutCallButton, AboutApartmentsButton, AboutEmailButton } from "@/components/AboutButtons";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import ApartamentoGallery from "@/components/ApartamentoGallery";
+import ApartamentoCard from "@/components/ApartamentoCard";
+import AmenityList from "@/components/AmenityIcon";
+import { apartamentos, getApartamentoById, getOtrosApartamentos } from "@/app/lib/apartamentos";
 
-export default async function ApartamentoPage({ params }: any) {
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
+
+export function generateStaticParams() {
+  return apartamentos.map((a) => ({ id: a.id }));
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
+  const apartamento = getApartamentoById(id);
+  if (!apartamento) return {};
+  return {
+    title: apartamento.nombre,
+    description: apartamento.descripcion,
+  };
+}
 
-  const apt = apartamentos.find((a) => a.id === id);
+export default async function ApartamentoDetailPage({ params }: PageProps) {
+  const { id } = await params;
+  const apartamento = getApartamentoById(id);
+  if (!apartamento) notFound();
 
-  if (!apt) {
-    return (
-      <main style={{ fontFamily: "system-ui, sans-serif", color: "#1a1a1a" }}>
-        <Header />
-        <div style={{ padding: "120px 40px", textAlign: "center" }}>
-          <h1 style={{ fontSize: "32px", fontWeight: "700", color: "#1a1a1a", marginBottom: "20px" }}>
-            Apartamento no encontrado
-          </h1>
-          <p style={{ color: "#666", marginBottom: "40px" }}>
-            El apartamento que buscas no existe o no está disponible.
-          </p>
-          <AboutApartmentsButton />
-        </div>
-        <Footer />
-      </main>
-    );
-  }
+  const otros = getOtrosApartamentos(apartamento.id);
 
   return (
-    <main style={{ fontFamily: "system-ui, sans-serif", color: "#1a1a1a" }}>
-      <Header />
+    <>
+      <section className="section section--stone" style={{ paddingTop: "clamp(7rem, 14vw, 9rem)", paddingBottom: "1rem" }}>
+        <div className="wrap">
+          <Link href="/apartamentos" className="link-arrow">← Apartamentos</Link>
+        </div>
+      </section>
 
-      {/* Hero Section with Carousel */}
-      <section
-        style={{
-          padding: "80px 40px 60px",
-          background: "linear-gradient(135deg, #e6f3ff 0%, #ffffff 100%)",
-        }}
-      >
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "start" }}>
-            {/* Image Carousel */}
-            <div>
-              <ImageCarousel images={apt.imagenes} alt={apt.nombre} />
+      <section className="section--stone" style={{ paddingBottom: "clamp(3.5rem, 8vw, 7rem)" }}>
+        <div className="wrap detail-layout">
+          <ApartamentoGallery imagenes={apartamento.imagenes} nombre={apartamento.nombre} />
+
+          <div>
+            <div className="detail-head">
+              <div>
+                <h1>{apartamento.nombre}</h1>
+                <p className="detail-plot">{apartamento.planta} · orientación {apartamento.orientacion}</p>
+              </div>
+              <span className={`badge ${apartamento.disponible ? "" : "badge--off"}`} style={{ position: "static" }}>
+                {apartamento.disponible ? "Disponible" : "Ocupado"}
+              </span>
             </div>
 
-            {/* Apartment Info */}
-            <div>
-              <h1 style={{ fontSize: "36px", fontWeight: "700", color: "#1a1a1a", marginBottom: "12px" }}>
-                {apt.nombre}
-              </h1>
+            <div className="spec-grid">
+              <div><strong>{apartamento.metros} m²</strong><span>Superficie</span></div>
+              <div><strong>{apartamento.habitaciones}</strong><span>Habitaciones</span></div>
+              <div><strong>{apartamento.banos}</strong><span>Baños</span></div>
+              <div><strong>{apartamento.capacidad}</strong><span>Capacidad</span></div>
+            </div>
 
-              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
-                <span style={{
-                  background: apt.disponible ? "#d4edda" : "#f8d7da",
-                  color: apt.disponible ? "#155724" : "#721c24",
-                  padding: "4px 12px",
-                  borderRadius: "20px",
-                  fontSize: "14px",
-                  fontWeight: "600",
-                }}>
-                  {apt.disponible ? "Disponible" : "Ocupado"}
-                </span>
-                <span style={{ color: "#666", fontSize: "16px" }}>
-                  {apt.planta}
-                </span>
-              </div>
+            <p className="lede" style={{ maxWidth: "none" }}>{apartamento.descripcion}</p>
 
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "16px", marginBottom: "24px" }}>
-                <div style={{ background: "white", padding: "16px", borderRadius: "8px", textAlign: "center" }}>
-                  <div style={{ fontSize: "24px", fontWeight: "700", color: "#0066cc" }}>{apt.capacidad}</div>
-                  <div style={{ color: "#666", fontSize: "14px" }}>Capacidad</div>
-                </div>
-                <div style={{ background: "white", padding: "16px", borderRadius: "8px", textAlign: "center" }}>
-                  <div style={{ fontSize: "24px", fontWeight: "700", color: "#0066cc" }}>{apt.metros}m²</div>
-                  <div style={{ color: "#666", fontSize: "14px" }}>Superficie</div>
-                </div>
-                <div style={{ background: "white", padding: "16px", borderRadius: "8px", textAlign: "center" }}>
-                  <div style={{ fontSize: "24px", fontWeight: "700", color: "#0066cc" }}>{apt.habitaciones}</div>
-                  <div style={{ color: "#666", fontSize: "14px" }}>Habitaciones</div>
-                </div>
-                <div style={{ background: "white", padding: "16px", borderRadius: "8px", textAlign: "center" }}>
-                  <div style={{ fontSize: "24px", fontWeight: "700", color: "#0066cc" }}>{apt.banos}</div>
-                  <div style={{ color: "#666", fontSize: "14px" }}>Baños</div>
-                </div>
-              </div>
+            <AmenityList amenities={apartamento.amenities} />
 
-              <div style={{ background: "white", padding: "24px", borderRadius: "12px", marginBottom: "24px" }}>
-                <h3 style={{ fontSize: "20px", fontWeight: "600", color: "#1a1a1a", marginBottom: "12px" }}>
-                  Descripción
-                </h3>
-                <p style={{ color: "#666", lineHeight: "1.6" }}>
-                  {apt.descripcion}
-                </p>
-              </div>
-
-              {/* Amenities */}
-              <div style={{ background: "white", padding: "24px", borderRadius: "12px", marginBottom: "24px" }}>
-                <h3 style={{ fontSize: "20px", fontWeight: "600", color: "#1a1a1a", marginBottom: "16px" }}>
-                  Equipamiento
-                </h3>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
-                  {apt.amenities.map((amenity, index) => (
-                    <span
-                      key={index}
-                      style={{
-                        background: "#f8fbff",
-                        color: "#0066cc",
-                        padding: "6px 12px",
-                        borderRadius: "16px",
-                        fontSize: "14px",
-                        fontWeight: "500",
-                      }}
-                    >
-                      {amenity}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Contact Buttons */}
-              <div style={{ background: "white", padding: "24px", borderRadius: "12px" }}>
-                <h3 style={{ fontSize: "20px", fontWeight: "600", color: "#1a1a1a", marginBottom: "16px" }}>
-                  ¿Interesado en este apartamento?
-                </h3>
-                <p style={{ color: "#666", marginBottom: "20px" }}>
-                  Contacta con nosotros para más información y disponibilidad.
-                </p>
-                <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
-                  <AboutCallButton />
-                  <AboutEmailButton />
-                </div>
-              </div>
+            <div className="detail-actions">
+              <Link
+                href={`/sobre-nosotros?apartamento=${apartamento.id}#contacto`}
+                className="btn btn--primary"
+              >
+                Consultar disponibilidad
+              </Link>
+              <Link href="/apartamentos" className="btn btn--ghost">Ver otros apartamentos</Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section
-        style={{
-          padding: "80px 40px",
-          textAlign: "center",
-          background: "linear-gradient(135deg, #4d9de0 0%, #7bb3e8 100%)",
-          color: "white",
-        }}
-      >
-        <h2 style={{ fontSize: "36px", fontWeight: "700", marginBottom: "20px" }}>
-          ¿Quieres ver más apartamentos?
-        </h2>
-        <p style={{ fontSize: "18px", marginBottom: "30px", opacity: 0.9 }}>
-          Descubre todas nuestras opciones de alojamiento en Verín
-        </p>
-        <AboutApartmentsButton />
+      <section className="section section--white">
+        <div className="wrap">
+          <div className="section-head">
+            <div>
+              <p className="eyebrow">También en el número 5</p>
+              <h2>Otros apartamentos</h2>
+            </div>
+          </div>
+          <div className="others-row">
+            {otros.map((a) => (
+              <ApartamentoCard key={a.id} apartamento={a} />
+            ))}
+          </div>
+        </div>
       </section>
-
-      <Footer />
-    </main>
+    </>
   );
 }

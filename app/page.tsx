@@ -1,214 +1,123 @@
-import { AboutUsLink } from "@/components/AboutUsLink";
+import Image from "next/image";
 import Link from "next/link";
-import { apartamentos } from "@/data/apartamentos";
-import ApartmentCarousel from "@/components/ApartmentCarousel";
-import { CallButton, ViewApartmentsButton, CtaButton, EmailButton } from "@/components/HeroButtons";
-import { ViewAllApartmentsButton } from "@/components/ViewAllApartmentsButton";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import ContornoDivider from "@/components/ContornoDivider";
+import ApartamentoCard from "@/components/ApartamentoCard";
+import { apartamentos } from "@/app/lib/apartamentos";
+import { verinImages } from "@/app/lib/verin";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <main style={{ fontFamily: "system-ui, sans-serif", color: "#1a1a1a" }}>
-      <Header />
-      
-      {/* HERO */}
-      <section
-        style={{
-          padding: "120px 40px 100px",
-          textAlign: "center",
-          background: "linear-gradient(135deg, #e6f3ff 0%, #ffffff 100%)",
-          minHeight: "600px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        {/* Background Verin Images */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            opacity: 0.1,
-            zIndex: 1,
-          }}
-        >
-          <img
-            src="/images/verin/verin-1.png"
-            alt=""
-            style={{
-              position: "absolute",
-              top: "10%",
-              left: "10%",
-              width: "200px",
-              height: "150px",
-              objectFit: "cover",
-              borderRadius: "8px",
-              transform: "rotate(-5deg)",
-            }}
-          />
-          <img
-            src="/images/verin/verin-2.jpg"
-            alt=""
-            style={{
-              position: "absolute",
-              top: "60%",
-              right: "15%",
-              width: "180px",
-              height: "135px",
-              objectFit: "cover",
-              borderRadius: "8px",
-              transform: "rotate(3deg)",
-            }}
-          />
-          <img
-            src="/images/verin/verin-3.jpg"
-            alt=""
-            style={{
-              position: "absolute",
-              top: "30%",
-              right: "5%",
-              width: "160px",
-              height: "120px",
-              objectFit: "cover",
-              borderRadius: "8px",
-              transform: "rotate(-2deg)",
-            }}
-          />
+    <>
+      {/* ---------------------------------------------------------------- Hero */}
+      <section className="hero">
+        <div className="hero-media">
+          <Image src={verinImages[0].src} alt={verinImages[0].alt} fill priority style={{ objectFit: "cover" }} />
         </div>
-
-        <div style={{ position: "relative", zIndex: 2 }}>
-          <p style={{ letterSpacing: "3px", color: "#0066cc", fontSize: "14px", fontWeight: "600" }}>
-            ALOJAMIENTOS EN VERÍN
+        <div className="wrap hero-content">
+          <p className="eyebrow">Calle Maior, 5 · Verín, Galicia</p>
+          <h1>Tu dirección en el corazón de Verín.</h1>
+          <p className="lede">
+            Cuatro apartamentos reformados en un edificio de la calle principal, a un paseo del Castillo de Monterrei,
+            las viñas de la D.O. y las aguas termales que dan nombre a la comarca.
           </p>
-
-          <h1
-            style={{
-              fontSize: "56px",
-              fontWeight: "700",
-              marginTop: "16px",
-              lineHeight: "1.2",
-              color: "#1a1a1a",
-            }}
-          >
-            Estancias cómodas, <br /> simples y sin intermediarios
-          </h1>
-
-          <p style={{ marginTop: "24px", fontSize: "18px", color: "#666", maxWidth: "500px", margin: "24px auto 0" }}>
-            Apartamentos modernos preparados para estancias cortas y medias en el corazón de Galicia.
-          </p>
-
-          <div style={{ marginTop: "40px", display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
-            <CallButton />
-            <ViewApartmentsButton />
+          <div className="hero-cta">
+            <Link href="/apartamentos" className="btn btn--light">Ver los apartamentos</Link>
+            {/* <Link href="/sobre-nosotros#contacto" className="btn btn--ghost">Cómo llegar</Link> */}
+          </div>
+          <div className="hero-stats">
+            <div><strong>4</strong><span>Apartamentos</span></div>
+            <div><strong>39–69</strong><span>m² por unidad</span></div>
+            <div><strong>2</strong><span>Plantas</span></div>
           </div>
         </div>
       </section>
+      <ContornoDivider />
 
-      {/* APARTAMENTOS */}
-      <section style={{ padding: "80px 40px", background: "#f8fbff" }}>
-        
-        <div style={{ textAlign: "center", marginBottom: "60px", maxWidth: "600px", margin: "0 auto 60px" }}>
-          <h2 style={{ fontSize: "42px", fontWeight: "700", color: "#1a1a1a", marginBottom: "12px" }}>
-            Nuestros apartamentos
-          </h2>
-          <p style={{ color: "#666", fontSize: "16px" }}>
-            Elige el que mejor se adapte a tu estancia en Verín
-          </p>
-        </div>
-
-        <ApartmentCarousel apartments={apartamentos} />
-
-        <div style={{ textAlign: "center", marginTop: "40px" }}>
-          <ViewAllApartmentsButton />
-        </div>
-      </section>
-
-      {/* SOBRE VERIN */}
-      <section style={{ padding: "80px 40px", background: "white" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "60px", alignItems: "center" }}>
+      {/* ------------------------------------------------- Por qué Verín + Ubicación */}
+      <section className="section section--stone">
+        <div className="wrap">
+          <div className="section-head">
             <div>
-              <h2 style={{ fontSize: "36px", fontWeight: "700", color: "#1a1a1a", marginBottom: "20px" }}>
-                Descubre Verín
-              </h2>
-              <p style={{ color: "#666", fontSize: "16px", lineHeight: "1.6", marginBottom: "20px" }}>
-                Verín es una encantadora localidad gallega situada en la provincia de Ourense, 
-                en la frontera con Portugal. Conocida por su rica historia, su arquitectura tradicional 
-                y su proximidad a la naturaleza, ofrece el escenario perfecto para unas vacaciones inolvidables.
-              </p>
-              <p style={{ color: "#666", fontSize: "16px", lineHeight: "1.6", marginBottom: "30px" }}>
-                Desde nuestros apartamentos podrás explorar el casco histórico, disfrutar de la gastronomía 
-                local y relajarte en un entorno tranquilo y acogedor.
-              </p>
-              <AboutUsLink />
+              <p className="eyebrow">La comarca</p>
+              <h2>Por qué aquí</h2>
             </div>
-            <div style={{ position: "relative", height: "400px" }}>
-              <img
-                src="/images/verin/verin-4.jpg"
-                alt="Verín - Vista panorámica"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  borderRadius: "12px",
-                  boxShadow: "0 8px 24px rgba(0, 102, 204, 0.2)",
-                }}
-              />
+            <p className="lede">
+              Al sur de Ourense, en la frontera con Portugal, Verín reúne un castillo, un valle de viñedos y un
+              patrimonio de aguas minerales poco frecuente en un radio tan corto — con el edificio en plena Calle
+              Maior, a un paseo de todo ello.
+            </p>
+          </div>
+
+          <div className="verin-grid">
+            <div className="highlights">
+              {/*<div className="highlight-item">
+                <span className="mono">Castillo de Monterrei</span>
+                <h3>Vigilando el valle desde el siglo XII</h3>
+                <p>A quince minutos en coche, uno de los conjuntos monumentales más extensos de Galicia domina la vega desde lo alto.</p>
+              </div>*/}
+              <div className="highlight-item">
+                <span className="mono">D.O. Monterrei</span>
+                <h3>Godello y Mencía a los pies de la fortaleza</h3>
+                <p>Los viñedos de la denominación rodean el castillo; media hora te separa de una bodega y una cata.</p>
+              </div>
+              <div className="highlight-item">
+                <span className="mono">Aguas de Verín</span>
+                <h3>Manantiales que dan nombre a la comarca</h3>
+                <p>Fuentes y balnearios conocidos en toda España están a menos de diez minutos del apartamento.</p>
+              </div>
+              <div className="highlight-item">
+                <span className="mono">Calle Maior, 5</span>
+                <h3>A pie de todo, sin salir del casco</h3>
+                <p>Desde la puerta del edificio se llega andando a la plaza, los comercios y las principales paradas de autobús.</p>
+                <Link href="/sobre-nosotros" className="link-arrow" style={{ marginTop: "0.9rem" }}>Cómo llegar →</Link>
+              </div>
+            </div>
+
+            <div className="location-collage">
+              <Link href="/sobre-nosotros#contacto">
+                <Image src={verinImages[1]?.src ?? verinImages[0].src} alt={verinImages[1]?.alt ?? ""} width={480} height={600} style={{ objectFit: "cover" }} />
+              </Link>
+              <Link href="/sobre-nosotros#contacto">
+                <Image src={verinImages[2]?.src ?? verinImages[0].src} alt={verinImages[2]?.alt ?? ""} width={300} height={300} style={{ objectFit: "cover" }} />
+              </Link>
+              <Link href="/sobre-nosotros#contacto">
+                <Image src={verinImages[3]?.src ?? verinImages[0].src} alt={verinImages[3]?.alt ?? ""} width={300} height={300} style={{ objectFit: "cover" }} />
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA FINAL */}
-      <section
-        style={{
-          padding: "120px 40px",
-          textAlign: "center",
-          background: "linear-gradient(135deg, #4d9de0 0%, #7bb3e8 100%)",
-          color: "white",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        {/* Background Pattern */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            opacity: 0.1,
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        />
+      {/* ------------------------------------------------------------ Apartamentos */}
+      <section className="section section--white">
+        <div className="wrap">
+          <div className="section-head">
+            <div>
+              <p className="eyebrow">Alojamiento</p>
+              <h2>Cuatro apartamentos, una misma calle</h2>
+            </div>
+            <Link href="/apartamentos" className="link-arrow">Ver todos →</Link>
+          </div>
+          <div className="apt-grid apt-grid--four">
+            {apartamentos.map((apartamento) => (
+              <ApartamentoCard key={apartamento.id} apartamento={apartamento} />
+            ))}
+          </div>
+        </div>
+      </section>
 
-        <div style={{ position: "relative", zIndex: 2, maxWidth: "800px", margin: "0 auto" }}>
-          <h2 style={{ fontSize: "48px", fontWeight: "700", marginBottom: "16px", lineHeight: "1.2" }}>
-            ¿Listo para tu estancia perfecta en Verín?
+      <ContornoDivider tone="mint" flip />
+
+      {/* ------------------------------------------------------------------- CTA */}
+      <section className="section section--ink">
+        <div className="wrap" style={{ textAlign: "center" }}>
+          <p className="eyebrow" style={{ justifyContent: "center" }}>Reservas</p>
+          <h2 style={{ fontSize: "clamp(2rem, 2vw + 1.6rem, 3rem)", margin: "0.6rem auto 1.2rem", maxWidth: "20ch" }}>
+            Cuéntanos tus fechas y te decimos qué apartamento encaja.
           </h2>
-
-          <p style={{ marginTop: "16px", color: "rgba(255, 255, 255, 0.9)", fontSize: "20px", lineHeight: "1.4" }}>
-            Contacta con nosotros directamente y reserva tu apartamento ideal.
-            <br />
-            Sin intermediarios, sin complicaciones.
-          </p>
-
-          <div style={{ marginTop: "50px", display: "flex", gap: "20px", justifyContent: "center", flexWrap: "wrap" }}>
-            <CtaButton />
-            <EmailButton />
-          </div>
-
+          <Link href="tel:+34659118006" className="btn btn--light">Llamar a Maior 5</Link>
         </div>
       </section>
-
-      <Footer />
-    </main>
+    </>
   );
 }

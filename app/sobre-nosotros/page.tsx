@@ -3,7 +3,6 @@ import Image from "next/image";
 import { Suspense } from "react";
 import ContornoDivider from "@/components/ContornoDivider";
 import ContactForm from "@/components/ContactForm";
-import { verinImages } from "@/app/lib/verin";
 
 export const metadata: Metadata = {
   title: "Sobre nosotros y contacto",
@@ -29,30 +28,41 @@ export default function SobreNosotrosPage() {
 
       <ContornoDivider tone="sky" />
 
-      <section className="section section--white">
+      <section id="ubicacion" className="section section--white">
         <div className="wrap location-grid">
           <div>
-            <p className="eyebrow">Cómo llegar</p>
-            <h2>En coche, en tren o andando desde la plaza</h2>
-            <dl className="address-block" style={{ borderTop: "none", paddingTop: 0, flexDirection: "column", gap: "1.2rem" }}>
+            <p className="eyebrow">Ubicación</p>
+            <h2>Encuéntranos en el mapa</h2>
+            <p className="lede">
+              El edificio está en pleno centro de Verín, en Calle Maior, 5, a un paso de la plaza, los comercios y
+              y restaurantes.
+            </p>
+            <dl className="address-block" style={{ borderTop: "none", paddingTop: 0 }}>
               <div>
-                <dt>En coche</dt>
-                <dd>Salida de la A-52 en Verín; el edificio está a cinco minutos del desvío, en el centro del casco urbano.</dd>
-              </div>
-              <div>
-                <dt>En tren o autobús</dt>
-                <dd>Desde la estación de Verín, quince minutos andando por la Calle Maior hasta el número 5.</dd>
-              </div>
-              <div>
-                <dt>Desde la plaza mayor</dt>
-                <dd>Dos minutos a pie: el edificio está sobre la misma calle, entre comercios y cafeterías.</dd>
+                <dt>Dirección</dt>
+                <dd>Calle Maior, 5 - 32600 Verín, Ourense</dd>
               </div>
             </dl>
+            <div className="hero-cta" style={{ marginTop: "1.6rem" }}>
+              <a
+                href="https://share.google/gpGCtaa7692uatwLR"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn--primary"
+              >
+                Abrir en Google Maps
+              </a>
+            </div>
           </div>
-          <div className="location-collage">
-            <Image src={verinImages[2]?.src ?? verinImages[0].src} alt={verinImages[2]?.alt ?? ""} width={480} height={600} style={{ objectFit: "cover" }} />
-            <Image src={verinImages[0].src} alt={verinImages[0].alt} width={300} height={300} style={{ objectFit: "cover" }} />
-            <Image src={verinImages[3]?.src ?? verinImages[1]?.src ?? verinImages[0].src} alt={verinImages[3]?.alt ?? ""} width={300} height={300} style={{ objectFit: "cover" }} />
+
+          <div className="map-embed">
+            <iframe
+              src="https://www.google.com/maps?q=Calle+Maior+5+32600+Ver%C3%ADn+Ourense&output=embed"
+              title="Ubicación de Maior 5 Apartamentos en el mapa"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
           </div>
         </div>
       </section>

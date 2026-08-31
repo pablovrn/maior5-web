@@ -39,6 +39,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
+      <link rel="icon" href="/images/logo/logo_blanco.png" />
       <body className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
         <Header />
         <main>{children}</main>

@@ -30,9 +30,11 @@ const DOCUMENT_SUPPORT_PATTERNS: Record<string, string> = {
 
 export default function CheckInForm({
   countries,
+  municipalities,
   relationships,
 }: {
   countries: Country[];
+  municipalities: { code: string; label: string }[];
   relationships: Relationship[];
 }) {
   const [guests, setGuests] = useState<Guest[]>([{ id: 1 }]);
@@ -318,8 +320,19 @@ export default function CheckInForm({
             <p className="form-note field--full">Indica al menos uno de estos datos de contacto: teléfono, teléfono adicional o correo electrónico.</p>
             {residenceCountries[guest.id] === "ESP" ? (
               <div className="field">
-                <label htmlFor={`persona-${guest.id}-codigoMunicipio`}>Código de municipio (5 dígitos)</label>
-                <input id={`persona-${guest.id}-codigoMunicipio`} name={`persona-${guest.id}-codigoMunicipio`} pattern="[0-9]{5}" inputMode="numeric" required disabled={sending} />
+                <label htmlFor={`persona-${guest.id}-codigoMunicipio`}>Municipio de residencia</label>
+                <select
+                  id={`persona-${guest.id}-codigoMunicipio`}
+                  name={`persona-${guest.id}-codigoMunicipio`}
+                  defaultValue=""
+                  required
+                  disabled={sending}
+                >
+                  <option value="">Selecciona el municipio</option>
+                  {municipalities.map(({ code, label }) => (
+                    <option key={code} value={code}>{label}</option>
+                  ))}
+                </select>
               </div>
             ) : (
               <div className="field">

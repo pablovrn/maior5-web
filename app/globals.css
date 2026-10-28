@@ -564,6 +564,35 @@ h1, h2, h3, h4 {
 .form-status--ok { color: var(--sky-dim); }
 .form-status--error { color: #b3453a; }
 
+.checkin-page { padding-top: clamp(7rem, 12vw, 10rem); }
+.checkin-wrap { max-width: 980px; }
+.checkin-heading { margin-bottom: 2.5rem; }
+.checkin-heading h1 { font-size: clamp(2.2rem, 4vw, 3.5rem); margin-block: 0.7rem 1rem; }
+.checkin-fieldset {
+  min-width: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  padding: clamp(1rem, 3vw, 1.6rem);
+}
+.checkin-fieldset legend {
+  padding-inline: 0.5rem;
+  font-family: var(--font-display), serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.checkin-fields { display: grid; grid-template-columns: 1fr; gap: 1.1rem; }
+@media (min-width: 620px) { .checkin-fields { grid-template-columns: 1fr 1fr; } }
+.checkin-remove {
+  margin-left: 1rem;
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #b3453a;
+  text-decoration: underline;
+}
+.checkin-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem; }
+.checkin-actions .form-note, .checkin-actions .form-status { flex-basis: 100%; margin-top: 0; }
+
 /* ==========================================================================
    Footer
    ========================================================================== */
